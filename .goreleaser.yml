@@ -1,0 +1,28 @@
+before:
+  hooks:
+    - go generate ./...
+builds:
+  - main: .
+    binary: quickrank
+    ldflags:
+      - -s
+      - -w
+      - -extldflags
+      - -static
+    env:
+      - CGO_ENABLED=0
+    goarch:
+      - amd64
+      - arm64
+      - riscv64
+    goos:
+      - linux
+      - windows
+      - darwin
+    ignore:
+      - goos: windows
+        goarch: arm64
+    mod_timestamp: "{{ .CommitTimestamp }}"
+checksum:
+  name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
+  algorithm: sha256
