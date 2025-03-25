@@ -58,8 +58,8 @@ jobs:
             ~/.cache/go-build
             ~/go/pkg/mod
           key: ${{ runner.os }}-golang-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-golang-
+#          restore-keys: |
+#            ${{ runner.os }}-golang-
 
       - name: Install dependencies
         run: go mod download
